@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Ayuda y Preguntas Frecuentes — Aspirantes y Estudiantes Nuevos UCN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================================
+       VARIABLES DE DISEÑO E IDENTIDAD VISUAL UCN
+       ========================================================================== */
+    :root {
+      --ucn-primary: #0280AE;
+      --ucn-primary-dark: #02678d;
+      --ucn-primary-soft: rgba(2, 128, 174, 0.1);
+      --ucn-lavender: #B8B9DB;
+      --ucn-lavender-soft: rgba(184, 185, 219, 0.25);
+      --ucn-navy: #0A1A56;
+      --ucn-navy-light: #132878;
+      --bg-page: #F4F6FB;
+      --bg-card: #FFFFFF;
+      --text-main: #0A1A56;
+      --text-body: #2C365E;
+      --text-muted: #5A658A;
+      --border-light: rgba(10, 26, 86, 0.1);
+      --shadow-sm: 0 2px 8px rgba(10, 26, 86, 0.06);
+      --shadow-md: 0 8px 24px rgba(10, 26, 86, 0.09);
+      --shadow-lg: 0 14px 36px rgba(10, 26, 86, 0.14);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+      --transition: all 0.26s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* ==========================================================================
+       RESET Y SCROLLBARS PERSONALIZADOS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbars estilizados con la paleta institucional */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--ucn-lavender);
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--bg-page);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ucn-primary);
+    }
+
+    /* ==========================================================================
+       UTILIDADES Y CONTENEDORES
+       ========================================================================== */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.15rem;
+    }
+
+    mark.highlight {
+      background-color: var(--ucn-lavender);
+      color: var(--ucn-navy);
+      font-weight: 700;
+      padding: 0.05em 0.28em;
+      border-radius: 5px;
+    }
+
+    /* ==========================================================================
+       HERO COMPACTO Y CREATIVO
+       ========================================================================== */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--ucn-navy) 0%, #073B7A 52%, var(--ucn-primary) 100%);
+      color: #FFFFFF;
+      padding: 2.3rem 0 3.2rem;
+      overflow: hidden;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Detalles geométricos sutiles en #B8B9DB */
+    .hero-shape {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.16;
+    }
+    .hero-shape--circle-1 {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 28px solid var(--ucn-lavender);
+      top: -95px;
+      right: -65px;
+    }
+    .hero-shape--circle-2 {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--ucn-lavender) 0%, transparent 70%);
+      bottom: -45px;
+      left: 6%;
+    }
+    .hero-shape--grid {
+      top: 22px;
+      left: 3%;
+      width: 110px;
+      height: 110px;
+      background-image: radial-gradient(var(--ucn-lavender) 2px, transparent 2px);
+      background-size: 16px 16px;
+      opacity: 0.25;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(184, 185, 219, 0.2);
+      border: 1px solid rgba(184, 185, 219, 0.45);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0.38rem 0.95rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-badge svg {
+      width: 15px;
+      height: 15px;
+      color: var(--ucn-lavender);
+    }
+
+    .hero-title {
+      font-size: clamp(1.48rem, 3.6vw, 2.25rem);
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: #FFFFFF;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.92rem, 1.8vw, 1.06rem);
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 680px;
+      margin: 0 auto 1.6rem;
+      font-weight: 400;
+    }
+
+    /* Buscador en tiempo real */
+    .search-wrapper {
+      position: relative;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: var(--radius-pill);
+      padding: 0.38rem 0.55rem 0.38rem 1.15rem;
+      box-shadow: 0 12px 30px rgba(10, 26, 86, 0.28);
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .search-box:focus-within {
+      border-color: var(--ucn-lavender);
+      box-shadow: 0 14px 34px rgba(10, 26, 86, 0.36), 0 0 0 4px rgba(184, 185, 219, 0.3);
+    }
+
+    .search-icon {
+      width: 21px;
+      height: 21px;
+      color: var(--ucn-primary);
+      flex-shrink: 0;
+      margin-right: 0.7rem;
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.97rem;
+      color: var(--ucn-navy);
+      background: transparent;
+      padding: 0.55rem 0;
+    }
+
+    .search-input::placeholder {
+      color: #7B85A6;
+    }
+
+    .search-clear {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-page);
+      color: var(--ucn-navy);
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .search-clear.visible {
+      display: inline-flex;
+    }
+
+    .search-clear:hover {
+      background: var(--ucn-lavender);
+    }
+
+    /* ==========================================================================
+       PANEL DE GUÍA RÁPIDA PARA NUEVOS ESTUDIANTES (4 PILARES)
+       ========================================================================== */
+    .quick-guide-section {
+      margin-top: -1.65rem;
+      position: relative;
+      z-index: 5;
+      margin-bottom: 1.75rem;
+    }
+
+    .quick-guide-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.35rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(184, 185, 219, 0.45);
+    }
+
+    .quick-guide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .quick-guide-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ucn-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .quick-guide-title svg {
+      width: 18px;
+      height: 18px;
+      color: var(--ucn-primary);
+    }
+
+    .quick-guide-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 560px) {
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .pillars-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: var(--bg-page);
+      border: 1px solid rgba(184, 185, 219, 0.5);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .pillar-item:hover {
+      background: #FFFFFF;
+      border-color: var(--ucn-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pillar-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--ucn-navy), var(--ucn-primary));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .pillar-info h3 {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ucn-navy);
+      line-height: 1.25;
+      margin-bottom: 0.2rem;
+    }
+
+    .pillar-info p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* ==========================================================================
+       NAVEGACIÓN DE CATEGORÍAS Y BARRA DE HERRAMIENTAS
+       ========================================================================== */
+    .controls-section {
+      margin-bottom: 1.35rem;
+    }
+
+    .categories-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      overflow-x: auto;
+      padding-bottom: 0.55rem;
+      margin-bottom: 1rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @media (min-width: 900px) {
+      .categories-nav {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        padding-bottom: 0;
+      }
+    }
+
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+      padding: 0.55rem 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(10, 26, 86, 0.14);
+      background: #FFFFFF;
+      color: var(--ucn-navy);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(10, 26, 86, 0.03);
+    }
+
+    .cat-pill:hover {
+      border-color: var(--ucn-primary);
+      background: rgba(2, 128, 174, 0.05);
+    }
+
+    .cat-pill.active {
+      background: var(--ucn-navy);
+      border-color: var(--ucn-navy);
+      color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(10, 26, 86, 0.22);
+    }
+
+    .cat-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 0.42rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: var(--ucn-lavender);
+      color: var(--ucn-navy);
+      transition: var(--transition);
+    }
+
+    .cat-pill.active .cat-count {
+      background: var(--ucn-primary);
+      color: #FFFFFF;
+    }
+
+    /* Barra de estado: contador dinámico + útil + expandir/contraer */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #FFFFFF;
+      padding: 0.8rem 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toolbar-stats {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.86rem;
+      color: var(--text-body);
+    }
+
+    .results-badge {
+      font-weight: 700;
+      color: var(--ucn-navy);
+    }
+
+    .results-badge span {
+      color: var(--ucn-primary);
+    }
+
+    .helpful-filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--ucn-lavender);
+      background: var(--ucn-lavender-soft);
+      color: var(--ucn-navy);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .helpful-filter-btn:hover,
+    .helpful-filter-btn.active {
+      background: var(--ucn-navy);
+      border-color: var(--ucn-navy);
+      color: #FFFFFF;
+    }
+
+    .helpful-filter-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .btn-toggle-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--ucn-primary);
+      background: #FFFFFF;
+      color: var(--ucn-primary);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-toggle-all:hover {
+      background: var(--ucn-primary);
+      color: #FFFFFF;
+    }
+
+    .btn-toggle-all svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ==========================================================================
+       TARJETAS DE PREGUNTAS FRECUENTES (ACORDEÓN MODERNO)
+       ========================================================================== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .faq-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      border-left: 5px solid var(--ucn-primary);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(2, 128, 174, 0.35);
+      border-left-color: var(--ucn-primary);
+    }
+
+    .faq-card.is-open {
+      border-left-width: 6px;
+      border-left-color: var(--ucn-navy);
+      box-shadow: var(--shadow-md);
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem 1.25rem;
+      background: transparent;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--ucn-navy);
+      transition: background-color 0.2s ease;
+    }
+
+    .faq-question-btn:hover {
+      background-color: rgba(184, 185, 219, 0.12);
+    }
+
+    .faq-question-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .faq-top-badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .faq-number {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--ucn-primary);
+      background: var(--ucn-primary-soft);
+      padding: 0.18rem 0.55rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .faq-cat-badge {
+      display: inline-block;
+      background: var(--ucn-lavender);
+      color: var(--ucn-navy);
+      font-size: 0.73rem;
+      font-weight: 700;
+      padding: 0.2rem 0.68rem;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.01em;
+    }
+
+    .faq-helpful-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.71rem;
+      font-weight: 700;
+      color: var(--ucn-primary);
+      background: rgba(2, 128, 174, 0.08);
+      padding: 0.18rem 0.55rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .faq-question-text {
+      font-size: clamp(0.98rem, 2vw, 1.09rem);
+      font-weight: 700;
+      color: var(--ucn-navy);
+      line-height: 1.42;
+    }
+
+    .faq-chevron {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--bg-page);
+      color: var(--ucn-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+      transition: var(--transition);
+    }
+
+    .faq-card.is-open .faq-chevron {
+      background: var(--ucn-navy);
+      color: #FFFFFF;
+      transform: rotate(180deg);
+    }
+
+    .faq-chevron svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Animación suave de apertura/cierre en CSS puro */
+    .faq-answer-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .faq-card.is-open .faq-answer-wrapper {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-answer-inner {
+      overflow: hidden;
+    }
+
+    .faq-answer-content {
+      padding: 0.25rem 1.25rem 1.25rem;
+      border-top: 1px dashed rgba(184, 185, 219, 0.65);
+      margin-top: 0.15rem;
+      padding-top: 1rem;
+      color: var(--text-body);
+      font-size: 0.95rem;
+      line-height: 1.68;
+    }
+
+    .faq-answer-content p + p {
+      margin-top: 0.75rem;
+    }
+
+    .faq-bullet-list {
+      margin: 0.65rem 0 0.35rem 0.2rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .faq-bullet-list li {
+      position: relative;
+      padding-left: 1.35rem;
+    }
+
+    .faq-bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.58em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--ucn-primary);
+    }
+
+    /* Enlaces institucionales con estilo pill en #0280AE */
+    .ucn-link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      background-color: var(--ucn-primary);
+      color: #FFFFFF !important;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.48rem 1rem;
+      border-radius: var(--radius-pill);
+      margin-top: 0.65rem;
+      margin-right: 0.4rem;
+      box-shadow: 0 4px 12px rgba(2, 128, 174, 0.25);
+      transition: var(--transition);
+    }
+
+    .ucn-link-pill:hover {
+      background-color: var(--ucn-navy);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(10, 26, 86, 0.28);
+    }
+
+    .ucn-link-pill svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* Tarjetas internas estructuradas para los Centros de Servicio Educativo (CSE) */
+    .cse-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 680px) {
+      .cse-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .cse-card {
+      background: var(--bg-page);
+      border: 1px solid rgba(184, 185, 219, 0.65);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cse-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+      color: var(--ucn-navy);
+      font-size: 0.92rem;
+    }
+
+    .cse-card-header svg {
+      width: 17px;
+      height: 17px;
+      color: var(--ucn-primary);
+      flex-shrink: 0;
+    }
+
+    .cse-detail {
+      font-size: 0.85rem;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    .cse-contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+
+    .cse-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ucn-navy);
+      background: #FFFFFF;
+      border: 1px solid rgba(10, 26, 86, 0.14);
+      padding: 0.24rem 0.62rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .cse-chip:hover {
+      border-color: var(--ucn-primary);
+      color: var(--ucn-primary);
+    }
+
+    /* Barra de acciones dentro de cada respuesta */
+    .faq-footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      margin-top: 1.15rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(10, 26, 86, 0.07);
+    }
+
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      padding: 0.42rem 0.82rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(10, 26, 86, 0.14);
+      background: var(--bg-page);
+      color: var(--ucn-navy);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .action-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .action-btn:hover {
+      background: var(--ucn-lavender-soft);
+      border-color: var(--ucn-primary);
+      color: var(--ucn-navy);
+    }
+
+    .action-btn--helpful.is-marked {
+      background: var(--ucn-navy);
+      border-color: var(--ucn-navy);
+      color: #FFFFFF;
+    }
+
+    .action-btn--whatsapp:hover {
+      background: #E8F8EE;
+      border-color: #1F8B4C;
+      color: #146335;
+    }
+
+    /* Estado vacío cuando no hay coincidencias */
+    .empty-state {
+      display: none;
+      text-align: center;
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 1.5rem;
+      border: 1px dashed var(--ucn-lavender);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.5rem;
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    .empty-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--ucn-lavender-soft);
+      color: var(--ucn-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .empty-state h3 {
+      font-size: 1.12rem;
+      color: var(--ucn-navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .empty-state p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+    }
+
+    .btn-reset-filters {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--ucn-primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-reset-filters:hover {
+      background: var(--ucn-navy);
+    }
+
+    /* ==========================================================================
+       TOAST DE NOTIFICACIÓN (SIN ALERT)
+       ========================================================================== */
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: var(--ucn-navy);
+      color: #FFFFFF;
+      padding: 0.78rem 1.15rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 28px rgba(10, 26, 86, 0.35);
+      border: 1px solid var(--ucn-lavender);
+      transform: translateY(130%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      width: 18px;
+      height: 18px;
+      color: #6EE7B7;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       PIE DE PÁGINA INSTITUCIONAL
+       ========================================================================== */
+    .footer {
+      margin-top: auto;
+      background: var(--ucn-navy);
+      color: rgba(255, 255, 255, 0.88);
+      padding: 2.1rem 0 1.8rem;
+      border-top: 4px solid var(--ucn-primary);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-brand h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.83rem;
+      color: var(--ucn-lavender);
+      max-width: 540px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(184, 185, 219, 0.3);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-pill);
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      background: var(--ucn-primary);
+      border-color: var(--ucn-primary);
+    }
+
+    .footer-bottom {
+      margin-top: 1.35rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(184, 185, 219, 0.18);
+      font-size: 0.77rem;
+      color: rgba(184, 185, 219, 0.85);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       ENCABEZADO HERO COMPACTO
+       ======================================================================== -->
+  <header class="hero">
+    <div class="hero-shape hero-shape--circle-1" aria-hidden="true"></div>
+    <div class="hero-shape hero-shape--circle-2" aria-hidden="true"></div>
+    <div class="hero-shape hero-shape--grid" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span>Fundación Universitaria Católica del Norte · Educación 100 % Virtual</span>
+        </div>
+
+        <h1 class="hero-title">Centro de Ayuda y Preguntas Frecuentes — Aspirantes y Estudiantes Nuevos UCN</h1>
+        <p class="hero-subtitle">Bienvenido a tu comunidad universitaria digital. Resuelve al instante tus inquietudes sobre horarios, bloques académicos, aula virtual, financiación, homologación y grados.</p>
+
+        <!-- Barra de búsqueda en tiempo real -->
+        <div class="search-wrapper">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              class="search-input"
+              placeholder="Busca por palabra clave (ej. horarios, bloques, Teams, inglés, homologación...)"
+              aria-label="Buscar preguntas frecuentes"
+              autocomplete="off"
+            />
+            <button type="button" id="clearSearchBtn" class="search-clear" title="Limpiar búsqueda" aria-label="Limpiar búsqueda">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       CONTENIDO PRINCIPAL
+       ======================================================================== -->
+  <main class="container">
+
+    <!-- Panel interactivo: Guía Rápida para Nuevos Estudiantes -->
+    <section class="quick-guide-section" aria-label="Guía Rápida para Nuevos Estudiantes">
+      <div class="quick-guide-card">
+        <div class="quick-guide-header">
+          <div class="quick-guide-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Guía Rápida para Nuevos Estudiantes</span>
+          </div>
+          <span class="quick-guide-hint">Haz clic en un pilar para ir directo a su pregunta clave</span>
+        </div>
+
+        <div class="pillars-grid">
+          <button type="button" class="pillar-item" data-jump-id="1">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="pillar-info">
+              <h3>100% Virtual 24/7</h3>
+              <p>Aula disponible todo el día sin desplazamiento a sedes.</p>
+            </div>
+          </button>
+
+          <button type="button" class="pillar-item" data-jump-id="5">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div class="pillar-info">
+              <h3>2 Bloques de 8 Semanas</h3>
+              <p>Semestre de 16 semanas dividido para mayor enfoque.</p>
+            </div>
+          </button>
+
+          <button type="button" class="pillar-item" data-jump-id="6">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <div class="pillar-info">
+              <h3>Canal Oficial Teams</h3>
+              <p>Encuentros sincrónicos semanales y grabaciones en aula.</p>
+            </div>
+          </button>
+
+          <button type="button" class="pillar-item" data-jump-id="2">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <div class="pillar-info">
+              <h3>Curso de Inducción</h3>
+              <p>Se cursa simultáneamente con tus materias de 1.er semestre.</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navegación por categorías y controles -->
+    <section class="controls-section" aria-label="Filtros y controles de preguntas">
+      <nav class="categories-nav" id="categoriesNav" aria-label="Categorías de preguntas frecuentes"></nav>
+
+      <div class="toolbar">
+        <div class="toolbar-stats">
+          <div class="results-badge" id="resultsCounter">Mostrando <span>18</span> de 18 preguntas</div>
+          <button type="button" id="helpfulFilterBtn" class="helpful-filter-btn" title="Ver preguntas marcadas como útiles">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+            </svg>
+            <span>Útiles (<strong id="helpfulCount">0</strong>)</span>
+          </button>
+        </div>
+
+        <div class="toolbar-actions">
+          <button type="button" id="toggleAllBtn" class="btn-toggle-all">
+            <svg id="toggleAllIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="7 13 12 18 17 13"></polyline>
+              <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
+            <span id="toggleAllText">Expandir todas</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Listado dinámico de tarjetas FAQ -->
+    <section class="faq-list" id="faqList" aria-live="polite"></section>
+
+    <!-- Estado vacío si no hay resultados -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+      <h3>No encontramos preguntas que coincidan con tu búsqueda</h3>
+      <p>Intenta con términos más generales o limpia los filtros activos para explorar las 18 preguntas disponibles.</p>
+      <button type="button" id="resetFiltersBtn" class="btn-reset-filters">Mostrar todas las preguntas</button>
+    </div>
+  </main>
+
+  <!-- Toast de confirmación -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toastMessage">Respuesta copiada al portapapeles</span>
+  </div>
+
+  <!-- ========================================================================
+       PIE DE PÁGINA INSTITUCIONAL
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <h2>Fundación Universitaria Católica del Norte (UCN)</h2>
+          <p>Pioneros en educación superior 100 % virtual en Colombia. Acompañamos tu proyecto de vida profesional con sentido humano y excelencia académica.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.ucn.edu.co" target="_blank" rel="noopener noreferrer" class="footer-link">
+            <span>Portal Institucional UCN</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a href="mailto:info@ucn.edu.co" class="footer-link">
+            <span>info@ucn.edu.co</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Centro de Ayuda — Aspirantes y Estudiantes Nuevos</span>
+        <span>PBX: (604) 605 15 35 · Antioquia, Colombia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       LÓGICA INTERACTIVA DE LA APLICACIÓN (JAVASCRIPT PURO)
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ----------------------------------------------------------------------
+         1. BASE DE DATOS EXACTA DE LAS 18 PREGUNTAS FRECUENTES UCN
+         ---------------------------------------------------------------------- */
+      const FAQ_DATA = [
+        {
+          id: 1,
+          category: 'Modalidad y Horarios',
+          question: '¿Debo cumplir horario de estudio?',
+          plainText: 'En la UCN no tiene que cumplir un horario fijo de estudio, ya que el aula virtual está disponible las 24 horas del día, los 7 días de la semana. Sin embargo, le recomendamos participar en los encuentros sincrónicos programados semanalmente por sus docentes. Estos espacios le permitirán interactuar, profundizar en los temas y resolver tus dudas en tiempo real.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'En la UCN no tiene que cumplir un horario fijo de estudio, ya que el aula virtual está disponible las 24 horas del día, los 7 días de la semana.',
+            'Sin embargo, le recomendamos participar en los encuentros sincrónicos programados semanalmente por sus docentes. Estos espacios le permitirán interactuar, profundizar en los temas y resolver tus dudas en tiempo real.'
+          ]
+        },
+        {
+          id: 2,
+          category: 'Aula Virtual y Metodología',
+          question: '¿Al iniciar mi primer semestre solo adelantaré el curso de Inducción?',
+          plainText: 'No. Al iniciar su primer semestre, la UCN le matriculará en el curso de Inducción, el cual deberá realizar de manera simultánea con los demás cursos asignados. Por eso, le recomendamos ingresar periódicamente a cada curso, revisar los anuncios y explorar los espacios de foros, tareas y calendario. Así podrá conocer las actividades, e identificar las fechas de entrega.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'No. Al iniciar su primer semestre, la UCN le matriculará en el curso de Inducción, el cual deberá realizar de manera simultánea con los demás cursos asignados.',
+            'Por eso, le recomendamos ingresar periódicamente a cada curso, revisar los anuncios y explorar los espacios de foros, tareas y calendario. Así podrá conocer las actividades, e identificar las fechas de entrega.'
+          ]
+        },
+        {
+          id: 3,
+          category: 'Modalidad y Horarios',
+          question: '¿Es posible que se crucen los horarios de mis encuentros sincrónicos?',
+          plainText: 'Sí, es posible que algunos encuentros sincrónicos coincidan en el horario. Sin embargo, los docentes graban estos espacios y posteriormente publican las grabaciones en el aula virtual para que pueda consultarlas cuando lo requiera.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Sí, es posible que algunos encuentros sincrónicos coincidan en el horario. Sin embargo, los docentes graban estos espacios y posteriormente publican las grabaciones en el aula virtual para que pueda consultarlas cuando lo requiera.'
+          ]
+        },
+        {
+          id: 4,
+          category: 'Modalidad y Horarios',
+          question: '¿Debo asistir presencialmente a alguna sede de la Institución?',
+          plainText: 'No. En la Católica del Norte puede desarrollar su proceso formativo de manera 100 % virtual, sin necesidad de desplazarse a las instalaciones de la Institución.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'No. En la Católica del Norte puede desarrollar su proceso formativo de manera 100 % virtual, sin necesidad de desplazarse a las instalaciones de la Institución.'
+          ]
+        },
+        {
+          id: 5,
+          category: 'Modalidad y Horarios',
+          question: '¿Debo cursar todas las asignaturas del semestre simultáneamente?',
+          plainText: 'No, cada semestre tiene una duración de 16 semanas, distribuidas en dos bloques de 8 semanas. En este sentido, las materias se distribuyen entre ambos bloques, lo que le permite concentrarse en menos cursos al mismo tiempo, organizar mejor tus actividades académicas y contar con la posibilidad de realizar el pago de tu matrícula por bloques.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'No, cada semestre tiene una duración de 16 semanas, distribuidas en dos bloques de 8 semanas. En este sentido, las materias se distribuyen entre ambos bloques, lo que le permite concentrarse en menos cursos al mismo tiempo, organizar mejor tus actividades académicas y contar con la posibilidad de realizar el pago de tu matrícula por bloques.'
+          ]
+        },
+        {
+          id: 6,
+          category: 'Aula Virtual y Metodología',
+          question: '¿Qué es un encuentro sincrónico?',
+          plainText: 'Es un espacio de aprendizaje en tiempo real que permite que estudiantes y docentes se conectan simultáneamente a través de una plataforma virtual. En el caso de la Católica del Norte, estos encuentros se realizan mediante Teams, una herramienta que hace parte de Office 365 y que ha sido definida por la institución como canal oficial de comunicación. Durante estos espacios, pueden interactuar con el docente, participar en las actividades y resolver tus dudas.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Es un espacio de aprendizaje en tiempo real que permite que estudiantes y docentes se conectan simultáneamente a través de una plataforma virtual. En el caso de la Católica del Norte, estos encuentros se realizan mediante Teams, una herramienta que hace parte de Office 365 y que ha sido definida por la institución como canal oficial de comunicación. Durante estos espacios, pueden interactuar con el docente, participar en las actividades y resolver tus dudas.'
+          ]
+        },
+        {
+          id: 7,
+          category: 'Aula Virtual y Metodología',
+          question: '¿Qué es una actividad asincrónica?',
+          plainText: 'Es aquella actividad que puede realizar a su propio ritmo, sin necesidad de conectarse al mismo tiempo que el docente o compañeros de grupo. Por ejemplo, consultar las grabaciones de las clases, participar en foros, revisar contenidos o desarrollar y entregar actividades en el aula virtual, teniendo en cuenta las fechas establecidas.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Es aquella actividad que puede realizar a su propio ritmo, sin necesidad de conectarse al mismo tiempo que el docente o compañeros de grupo. Por ejemplo, consultar las grabaciones de las clases, participar en foros, revisar contenidos o desarrollar y entregar actividades en el aula virtual, teniendo en cuenta las fechas establecidas.'
+          ]
+        },
+        {
+          id: 8,
+          category: 'Aula Virtual y Metodología',
+          question: '¿Qué es un foro o un foro de discusión?',
+          plainText: 'Es un espacio de participación e interacción dentro del aula virtual, donde puede compartir su presentación personal, sus ideas, responder preguntas, expresar opiniones y conocer los aportes de los compañeros y docentes. A diferencia de los encuentros sincrónicos, no necesita conectarse en un horario específico, pero sí debe tener en cuenta las fechas establecidas para participar.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Es un espacio de participación e interacción dentro del aula virtual, donde puede compartir su presentación personal, sus ideas, responder preguntas, expresar opiniones y conocer los aportes de los compañeros y docentes. A diferencia de los encuentros sincrónicos, no necesita conectarse en un horario específico, pero sí debe tener en cuenta las fechas establecidas para participar.'
+          ]
+        },
+        {
+          id: 9,
+          category: 'Aula Virtual y Metodología',
+          question: '¿Qué es una evaluación diagnóstica?',
+          plainText: 'Es una actividad que permite identificar sus conocimientos previos sobre un tema o asignatura antes de iniciar el proceso de aprendizaje. Su propósito es conocer qué tanto sabe, identificar sus fortalezas y reconocer los aspectos que necesita reforzar. Generalmente, no tiene una finalidad calificativa, sino que sirve como punto de partida para orientar su aprendizaje.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Es una actividad que permite identificar sus conocimientos previos sobre un tema o asignatura antes de iniciar el proceso de aprendizaje. Su propósito es conocer qué tanto sabe, identificar sus fortalezas y reconocer los aspectos que necesita reforzar. Generalmente, no tiene una finalidad calificativa, sino que sirve como punto de partida para orientar su aprendizaje.'
+          ]
+        },
+        {
+          id: 10,
+          category: 'Financiación y Convenios',
+          question: '¿Realizan procesos de financiación?',
+          plainText: 'Sí, a través de nuestros aliados se puede adquirir crédito educativo para el pago de cada período académico. En el siguiente enlace se puede validar la información: https://ucn.edu.co/beneficios-formas-de-pago-y-financiacion',
+          renderType: 'link',
+          paragraphs: [
+            'Sí, a través de nuestros aliados se puede adquirir crédito educativo para el pago de cada período académico. En el siguiente enlace se puede validar la información:'
+          ],
+          link: {
+            url: 'https://ucn.edu.co/beneficios-formas-de-pago-y-financiacion',
+            label: 'Ver formas de pago y financiación'
+          }
+        },
+        {
+          id: 11,
+          category: 'Homologación y Requisitos',
+          question: '¿Para graduarme necesito idoneidad en segunda lengua?',
+          plainText: 'Sí, debe certificar el segundo idioma que, para el caso de la UCN, es el inglés. Y en cuanto a la cantidad de niveles que se deben realizar dependen del año de ingreso en la carrera. La información la podrá consultar acá (https://www.ucn.edu.co).',
+          renderType: 'link',
+          paragraphs: [
+            'Sí, debe certificar el segundo idioma que, para el caso de la UCN, es el inglés. Y en cuanto a la cantidad de niveles que se deben realizar dependen del año de ingreso en la carrera. La información la podrá consultar acá:'
+          ],
+          link: {
+            url: 'https://www.ucn.edu.co',
+            label: 'Consultar información en ucn.edu.co'
+          }
+        },
+        {
+          id: 12,
+          category: 'Sedes, Prácticas y Grado',
+          question: '¿Cuáles son los puntos de atención de los Centros de Servicio Educativo (CSE)?',
+          plainText: 'Campus Santa Rosa de Osos: Carrera 21 No 34B – 07 – Medellín Edificio Coltejer – Calle 52 No 47 – 42. PBX: 605 15 35 – FAX (057) (4) 605 42 20 Antioquia – Colombia www.ucn.edu.co / info@ucn.edu.co. | CSE Caucasia: 323 316 29 99, Parroquia las Misericordias. Caucasia – Antioquia. | CSE Santa Fe de Antioquia: Cl. 9 Santander #89 Instituto Arquidiocesano Urbano y Rural. Santa Fe de Antioquia – Antioquia. | CSE Rionegro: 310 754 09 60, Calle 50 N° 50-54 int. 202, parque principal.',
+          renderType: 'cse',
+          cseList: [
+            {
+              name: 'Campus Santa Rosa de Osos / Sede Medellín',
+              address: 'Campus Santa Rosa de Osos: Carrera 21 No 34B – 07 · Medellín Edificio Coltejer – Calle 52 No 47 – 42. Antioquia – Colombia.',
+              phones: ['PBX: 605 15 35', 'FAX: (057) (4) 605 42 20'],
+              email: 'info@ucn.edu.co',
+              web: 'https://www.ucn.edu.co'
+            },
+            {
+              name: 'CSE Caucasia',
+              address: 'Parroquia las Misericordias. Caucasia – Antioquia.',
+              phones: ['323 316 29 99']
+            },
+            {
+              name: 'CSE Santa Fe de Antioquia',
+              address: 'Cl. 9 Santander #89 Instituto Arquidiocesano Urbano y Rural. Santa Fe de Antioquia – Antioquia.',
+              phones: []
+            },
+            {
+              name: 'CSE Rionegro',
+              address: 'Calle 50 N° 50-54 int. 202, parque principal.',
+              phones: ['310 754 09 60']
+            }
+          ]
+        },
+        {
+          id: 13,
+          category: 'Homologación y Requisitos',
+          question: '¿Me homologan cursos de otros estudios que haya realizado?',
+          plainText: 'Para el proceso de homologación se tienen establecidos algunos lineamientos institucionales: No se homologan cursos del primer semestre. No se homologan cursos de práctica ni de trabajo de grado. No se reconoce más del 50% de la carrera a la cual se va a matricular. No se reconoce título, el proceso de homologación se realiza solo por asignaturas.',
+          renderType: 'list',
+          intro: 'Para el proceso de homologación se tienen establecidos algunos lineamientos institucionales:',
+          items: [
+            'No se homologan cursos del primer semestre.',
+            'No se homologan cursos de práctica ni de trabajo de grado.',
+            'No se reconoce más del 50% de la carrera a la cual se va a matricular.',
+            'No se reconoce título, el proceso de homologación se realiza solo por asignaturas.'
+          ]
+        },
+        {
+          id: 14,
+          category: 'Homologación y Requisitos',
+          question: '¿Cuáles son los requisitos para la homologación?',
+          plainText: 'Certificado de notas original con firmas y sellos de la institución de procedencia. Contenidos programáticos originales con firmas y sellos de la universidad de procedencia.',
+          renderType: 'list',
+          intro: 'Para solicitar el estudio de homologación debes presentar:',
+          items: [
+            'Certificado de notas original con firmas y sellos de la institución de procedencia.',
+            'Contenidos programáticos originales con firmas y sellos de la universidad de procedencia.'
+          ]
+        },
+        {
+          id: 15,
+          category: 'Financiación y Convenios',
+          question: '¿La Institución cuenta con convenios para acceder a descuentos?',
+          plainText: 'Efectivamente, La Institución cuenta con convenios con Instituciones como la Policía Nacional, el Ministerio de Defensa, el SENA, Comfama, comunidades religiosas y demás. Consulte la lista completa de alianzas: https://ucn.edu.co/beneficios-alianzas/',
+          renderType: 'link',
+          paragraphs: [
+            'Efectivamente, La Institución cuenta con convenios con Instituciones como la Policía Nacional, el Ministerio de Defensa, el SENA, Comfama, comunidades religiosas y demás. Consulte la lista completa de alianzas:'
+          ],
+          link: {
+            url: 'https://ucn.edu.co/beneficios-alianzas/',
+            label: 'Consultar lista completa de alianzas'
+          }
+        },
+        {
+          id: 16,
+          category: 'Sedes, Prácticas y Grado',
+          question: '¿Tengo que realizar prácticas y cómo se realizan?',
+          plainText: 'Toda la información la puedes encontrar en el enlace: https://ucn.edu.co/centro-virtual-practicas-estudiantes/',
+          renderType: 'link',
+          paragraphs: [
+            'Toda la información la puedes encontrar en el enlace:'
+          ],
+          link: {
+            url: 'https://ucn.edu.co/centro-virtual-practicas-estudiantes/',
+            label: 'Ir al Centro Virtual de Prácticas'
+          }
+        },
+        {
+          id: 17,
+          category: 'Sedes, Prácticas y Grado',
+          question: '¿Si estudio en la UCN, mi título sería válido en otro País?',
+          plainText: 'Los títulos académicos que otorga la Fundación Universitaria Católica del Norte son convalidables en cualquier país, en este caso nuestro graduado debe realizar el respectivo proceso de convalidación con el organismo máximo de educación del país en el cual se desea ejercer la profesión.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Los títulos académicos que otorga la Fundación Universitaria Católica del Norte son convalidables en cualquier país, en este caso nuestro graduado debe realizar el respectivo proceso de convalidación con el organismo máximo de educación del país en el cual se desea ejercer la profesión.'
+          ]
+        },
+        {
+          id: 18,
+          category: 'Sedes, Prácticas y Grado',
+          question: '¿Se realiza ceremonia de grados? ¿Cómo se recibe el título?',
+          plainText: 'Sí. Al finalizar el programa académico y cumplir con los requisitos exigidos según reglamento estudiantil, la institución le informará la modalidad de la ceremonia de graduación. El estudiante es quien elige su modalidad de acuerdo al gusto y posibilidad.',
+          renderType: 'paragraphs',
+          paragraphs: [
+            'Sí. Al finalizar el programa académico y cumplir con los requisitos exigidos según reglamento estudiantil, la institución le informará la modalidad de la ceremonia de graduación. El estudiante es quien elige su modalidad de acuerdo al gusto y posibilidad.'
+          ]
+        }
+      ];
+
+      const CATEGORIES = [
+        'Todas',
+        'Modalidad y Horarios',
+        'Aula Virtual y Metodología',
+        'Financiación y Convenios',
+        'Homologación y Requisitos',
+        'Sedes, Prácticas y Grado'
+      ];
+
+      /* ----------------------------------------------------------------------
+         2. ESTADO DE LA APLICACIÓN
+         ---------------------------------------------------------------------- */
+      const STORAGE_KEY = 'ucn_faq_helpful_v1';
+      let helpfulIds = new Set();
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (Array.isArray(saved)) helpfulIds = new Set(saved);
+      } catch (e) {
+        helpfulIds = new Set();
+      }
+
+      const state = {
+        activeCategory: 'Todas',
+        searchQuery: '',
+        onlyHelpful: false,
+        openIds: new Set([1]) // Primera pregunta abierta por defecto como guía visual
+      };
+
+      /* ----------------------------------------------------------------------
+         3. REFERENCIAS DOM
+         ---------------------------------------------------------------------- */
+      const categoriesNav = document.getElementById('categoriesNav');
+      const faqList = document.getElementById('faqList');
+      const searchInput = document.getElementById('searchInput');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const resultsCounter = document.getElementById('resultsCounter');
+      const helpfulFilterBtn = document.getElementById('helpfulFilterBtn');
+      const helpfulCountEl = document.getElementById('helpfulCount');
+      const toggleAllBtn = document.getElementById('toggleAllBtn');
+      const toggleAllText = document.getElementById('toggleAllText');
+      const toggleAllIcon = document.getElementById('toggleAllIcon');
+      const emptyState = document.getElementById('emptyState');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      const toastEl = document.getElementById('toast');
+      const toastMsgEl = document.getElementById('toastMessage');
+
+      /* ----------------------------------------------------------------------
+         4. FUNCIONES AUXILIARES (NORMALIZACIÓN, RESALTADO, TOAST, COPIAR)
+         ---------------------------------------------------------------------- */
+      function normalizeText(str) {
+        return str
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function highlightText(text, query) {
+        const safeText = escapeHtml(text);
+        const trimmed = query.trim();
+        if (!trimmed) return safeText;
+
+        // Resaltado insensible a tildes y mayúsculas
+        const normText = normalizeText(text);
+        const normQuery = normalizeText(trimmed);
+        if (!normQuery) return safeText;
+
+        let result = '';
+        let cursor = 0;
+        let matchIndex = normText.indexOf(normQuery, cursor);
+
+        while (matchIndex !== -1) {
+          result += escapeHtml(text.slice(cursor, matchIndex));
+          result += '<mark class="highlight">' + escapeHtml(text.slice(matchIndex, matchIndex + trimmed.length)) + '</mark>';
+          cursor = matchIndex + trimmed.length;
+          matchIndex = normText.indexOf(normQuery, cursor);
+        }
+
+        result += escapeHtml(text.slice(cursor));
+        return result;
+      }
+
+      let toastTimer = null;
+      function showToast(message) {
+        toastMsgEl.textContent = message;
+        toastEl.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('show');
+        }, 2600);
+      }
+
+      function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showToast('Respuesta copiada al portapapeles');
+        } catch (err) {
+          showToast('No se pudo copiar automáticamente');
+        }
+        document.body.removeChild(textarea);
+      }
+
+      function saveHelpful() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(helpfulIds)));
+        } catch (e) {
+          // Ignorar errores en modo privado
+        }
+      }
+
+      /* ----------------------------------------------------------------------
+         5. RENDERIZADO DE PÍLDORAS DE CATEGORÍA
+         ---------------------------------------------------------------------- */
+      function renderCategories() {
+        categoriesNav.innerHTML = '';
+        CATEGORIES.forEach((cat) => {
+          const count = cat === 'Todas'
+            ? FAQ_DATA.length
+            : FAQ_DATA.filter((item) => item.category === cat).length;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'cat-pill' + (state.activeCategory === cat && !state.onlyHelpful ? ' active' : '');
+          btn.innerHTML = `
+            <span>${escapeHtml(cat)}</span>
+            <span class="cat-count">${count}</span>
+          `;
+          btn.addEventListener('click', () => {
+            state.activeCategory = cat;
+            state.onlyHelpful = false;
+            helpfulFilterBtn.classList.remove('active');
+            renderApp();
+          });
+          categoriesNav.appendChild(btn);
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         6. CONSTRUCCIÓN DEL HTML INTERNO DE CADA RESPUESTA
+         ---------------------------------------------------------------------- */
+      function buildAnswerBodyHtml(item, query) {
+        if (item.renderType === 'paragraphs') {
+          return item.paragraphs
+            .map((p) => `<p>${highlightText(p, query)}</p>`)
+            .join('');
+        }
+
+        if (item.renderType === 'list') {
+          const introHtml = item.intro ? `<p>${highlightText(item.intro, query)}</p>` : '';
+          const listHtml = item.items
+            .map((li) => `<li>${highlightText(li, query)}</li>`)
+            .join('');
+          return `${introHtml}<ul class="faq-bullet-list">${listHtml}</ul>`;
+        }
+
+        if (item.renderType === 'link') {
+          const paragraphsHtml = item.paragraphs
+            .map((p) => `<p>${highlightText(p, query)}</p>`)
+            .join('');
+          return `
+            ${paragraphsHtml}
+            <div>
+              <a href="${escapeHtml(item.link.url)}" target="_blank" rel="noopener noreferrer" class="ucn-link-pill">
+                <span>${escapeHtml(item.link.label)}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          `;
+        }
+
+        if (item.renderType === 'cse') {
+          const cardsHtml = item.cseList.map((cse) => {
+            const phonesHtml = cse.phones.map((ph) => {
+              const telClean = ph.replace(/[^\d+]/g, '');
+              return `<a href="tel:${telClean}" class="cse-chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>${highlightText(ph, query)}</span>
+              </a>`;
+            }).join('');
+
+            const emailHtml = cse.email
+              ? `<a href="mailto:${cse.email}" class="cse-chip">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <span>${highlightText(cse.email, query)}</span>
+                </a>`
+              : '';
+
+            const webHtml = cse.web
+              ? `<a href="${cse.web}" target="_blank" rel="noopener noreferrer" class="cse-chip">
+                  <span>www.ucn.edu.co</span>
+                </a>`
+              : '';
+
+            return `
+              <div class="cse-card">
+                <div class="cse-card-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>${highlightText(cse.name, query)}</span>
+                </div>
+                <div class="cse-detail">${highlightText(cse.address, query)}</div>
+                ${(phonesHtml || emailHtml || webHtml) ? `<div class="cse-contact-row">${phonesHtml}${emailHtml}${webHtml}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+
+          return `<div class="cse-grid">${cardsHtml}</div>`;
+        }
+
+        return '';
+      }
+
+      /* ----------------------------------------------------------------------
+         7. FILTRADO Y RENDERIZADO PRINCIPAL
+         ---------------------------------------------------------------------- */
+      function getFilteredFaqs() {
+        const normQuery = normalizeText(state.searchQuery.trim());
+
+        return FAQ_DATA.filter((item) => {
+          if (state.onlyHelpful && !helpfulIds.has(item.id)) {
+            return false;
+          }
+          if (!state.onlyHelpful && state.activeCategory !== 'Todas' && item.category !== state.activeCategory) {
+            return false;
+          }
+          if (normQuery) {
+            const haystack = normalizeText(item.question + ' ' + item.plainText + ' ' + item.category);
+            return haystack.includes(normQuery);
+          }
+          return true;
+        });
+      }
+
+      function renderApp() {
+        renderCategories();
+
+        const filtered = getFilteredFaqs();
+        const query = state.searchQuery;
+
+        // Actualizar contadores
+        helpfulCountEl.textContent = helpfulIds.size;
+        resultsCounter.innerHTML = `Mostrando <span>${filtered.length}</span> de ${FAQ_DATA.length} preguntas`;
+
+        // Si hay búsqueda activa, abrir automáticamente las coincidencias
+        if (query.trim().length > 0) {
+          filtered.forEach((item) => state.openIds.add(item.id));
+        }
+
+        // Actualizar botón Expandir / Contraer todas
+        const allOpen = filtered.length > 0 && filtered.every((item) => state.openIds.has(item.id));
+        toggleAllText.textContent = allOpen ? 'Contraer todas' : 'Expandir todas';
+        toggleAllIcon.innerHTML = allOpen
+          ? '<polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline>'
+          : '<polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline>';
+
+        faqList.innerHTML = '';
+
+        if (filtered.length === 0) {
+          emptyState.classList.add('visible');
+          return;
+        }
+        emptyState.classList.remove('visible');
+
+        filtered.forEach((item) => {
+          const isOpen = state.openIds.has(item.id);
+          const isHelpful = helpfulIds.has(item.id);
+
+          const card = document.createElement('article');
+          card.className = 'faq-card' + (isOpen ? ' is-open' : '');
+          card.id = `faq-card-${item.id}`;
+
+          const whatsappText = encodeURIComponent(
+            `*Pregunta Frecuente UCN:*\n${item.question}\n\n*Respuesta:*\n${item.plainText}\n\nMás info: https://www.ucn.edu.co`
+          );
+
+          card.innerHTML = `
+            <button type="button" class="faq-question-btn" aria-expanded="${isOpen}" aria-controls="faq-answer-${item.id}">
+              <div class="faq-question-meta">
+                <div class="faq-top-badges">
+                  <span class="faq-number">#${String(item.id).padStart(2, '0')}</span>
+                  <span class="faq-cat-badge">${escapeHtml(item.category)}</span>
+                  ${isHelpful ? '<span class="faq-helpful-pill">★ Marcada como útil</span>' : ''}
+                </div>
+                <h2 class="faq-question-text">${highlightText(item.question, query)}</h2>
+              </div>
+              <span class="faq-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+
+            <div class="faq-answer-wrapper" id="faq-answer-${item.id}">
+              <div class="faq-answer-inner">
+                <div class="faq-answer-content">
+                  ${buildAnswerBodyHtml(item, query)}
+
+                  <div class="faq-footer-actions">
+                    <div class="action-group">
+                      <button type="button" class="action-btn action-btn--helpful ${isHelpful ? 'is-marked' : ''}" data-action="helpful">
+                        <svg viewBox="0 0 24 24" fill="${isHelpful ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                        <span>${isHelpful ? 'Útil guardada' : 'Marcar como útil'}</span>
+                      </button>
+                    </div>
+
+                    <div class="action-group">
+                      <button type="button" class="action-btn" data-action="copy">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span>Copiar respuesta</span>
+                      </button>
+
+                      <a href="https://api.whatsapp.com/send?text=${whatsappText}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn--whatsapp">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                        <span>Compartir por WhatsApp</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+          // Eventos de acordeón y acciones
+          const questionBtn = card.querySelector('.faq-question-btn');
+          questionBtn.addEventListener('click', () => {
+            if (state.openIds.has(item.id)) {
+              state.openIds.delete(item.id);
+              card.classList.remove('is-open');
+              questionBtn.setAttribute('aria-expanded', 'false');
+            } else {
+              state.openIds.add(item.id);
+              card.classList.add('is-open');
+              questionBtn.setAttribute('aria-expanded', 'true');
+            }
+            updateToggleAllButtonState();
+          });
+
+          const copyBtn = card.querySelector('[data-action="copy"]');
+          copyBtn.addEventListener('click', () => {
+            copyToClipboard(`${item.question}\n\n${item.plainText}`);
+          });
+
+          const helpfulBtn = card.querySelector('[data-action="helpful"]');
+          helpfulBtn.addEventListener('click', () => {
+            if (helpfulIds.has(item.id)) {
+              helpfulIds.delete(item.id);
+              showToast('Eliminada de preguntas útiles');
+            } else {
+              helpfulIds.add(item.id);
+              showToast('Marcada como pregunta útil');
+            }
+            saveHelpful();
+            renderApp();
+          });
+
+          faqList.appendChild(card);
+        });
+      }
+
+      function updateToggleAllButtonState() {
+        const filtered = getFilteredFaqs();
+        const allOpen = filtered.length > 0 && filtered.every((item) => state.openIds.has(item.id));
+        toggleAllText.textContent = allOpen ? 'Contraer todas' : 'Expandir todas';
+        toggleAllIcon.innerHTML = allOpen
+          ? '<polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline>'
+          : '<polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline>';
+      }
+
+      /* ----------------------------------------------------------------------
+         8. LISTENERS GLOBALES
+         ---------------------------------------------------------------------- */
+      searchInput.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        clearSearchBtn.classList.toggle('visible', state.searchQuery.length > 0);
+        renderApp();
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        state.searchQuery = '';
+        searchInput.value = '';
+        clearSearchBtn.classList.remove('visible');
+        searchInput.focus();
+        renderApp();
+      });
+
+      toggleAllBtn.addEventListener('click', () => {
+        const filtered = getFilteredFaqs();
+        const allOpen = filtered.length > 0 && filtered.every((item) => state.openIds.has(item.id));
+
+        if (allOpen) {
+          filtered.forEach((item) => state.openIds.delete(item.id));
+        } else {
+          filtered.forEach((item) => state.openIds.add(item.id));
+        }
+        renderApp();
+      });
+
+      helpfulFilterBtn.addEventListener('click', () => {
+        state.onlyHelpful = !state.onlyHelpful;
+        helpfulFilterBtn.classList.toggle('active', state.onlyHelpful);
+        renderApp();
+      });
+
+      resetFiltersBtn.addEventListener('click', () => {
+        state.activeCategory = 'Todas';
+        state.searchQuery = '';
+        state.onlyHelpful = false;
+        searchInput.value = '';
+        clearSearchBtn.classList.remove('visible');
+        helpfulFilterBtn.classList.remove('active');
+        renderApp();
+      });
+
+      // Navegación desde los 4 pilares de la Guía Rápida
+      document.querySelectorAll('[data-jump-id]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetId = Number(btn.getAttribute('data-jump-id'));
+          state.activeCategory = 'Todas';
+          state.onlyHelpful = false;
+          state.searchQuery = '';
+          searchInput.value = '';
+          clearSearchBtn.classList.remove('visible');
+          helpfulFilterBtn.classList.remove('active');
+          state.openIds.add(targetId);
+          renderApp();
+
+          const cardEl = document.getElementById(`faq-card-${targetId}`);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      });
+
+      // Inicialización
+      renderApp();
+    })();
+  </script>
+</body>
+</html>
